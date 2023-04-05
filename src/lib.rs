@@ -18,6 +18,7 @@ use syn::{spanned::Spanned, DeriveInput, LitInt};
 /// - The higher the weight is, the more likely it will be selected
 /// - If a type is specified, (i.e 1_u8), that same type must be obeyed for all the other weights
 /// - By default the type is i32, as this is Rust's default number type
+/// - Weights cannot all be `0`, as there will be no value chosen, ever
 #[proc_macro_error]
 #[proc_macro_derive(Distribution, attributes(weight))]
 pub fn derive_distribute(input: TokenStream) -> TokenStream {
