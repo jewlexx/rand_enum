@@ -10,11 +10,15 @@ use syn::{spanned::Spanned, DeriveInput, LitInt};
 #[proc_macro_derive(Distribution, attributes(weight))]
 pub fn derive_distribute(input: TokenStream) -> TokenStream {
     let rand_crate = match proc_macro_crate::crate_name("rand") {
-        Ok(found) => match found {
-            // TODO: Better message for itself
-            FoundCrate::Itself => abort_call_site!("could not find `rand` crate"),
-            FoundCrate::Name(name) => Ident::new(&name, name.span()),
-        },
+        Ok(found) => {
+            let name = match found {
+                // TODO: Better message for itself
+                FoundCrate::Itself => "crate".to_string(),
+                FoundCrate::Name(name) => name,
+            };
+
+            Ident::new(&name, name.span())
+        }
         Err(_) => abort_call_site!("could not find `rand` crate"),
     };
 
