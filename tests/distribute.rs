@@ -1,5 +1,5 @@
-use distribute::Distribution;
 use rand::{thread_rng, Rng};
+use rand_enum::Distribution;
 
 #[derive(Debug, Distribution)]
 enum Colours {
