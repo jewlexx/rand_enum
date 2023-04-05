@@ -10,6 +10,14 @@ use proc_macro_crate::FoundCrate;
 use syn::{spanned::Spanned, DeriveInput, LitInt};
 
 /// Implements [`rand::Distribution`] for a given enum
+///
+/// Information on weights is as follows. Note that this is not much, and much more information can be found at [rand's docs](https://rust-random.github.io/rand/rand/distributions/struct.WeightedIndex.html)
+/// - According to rand, a weight cannot be negative
+/// - 0: A weight of `0` means it will never be selected
+/// - 1: A weight of `1` is the default weight, and is thus redundant
+/// - The higher the weight is, the more likely it will be selected
+/// - If a type is specified, (i.e 1_u8), that same type must be obeyed for all the other weights
+/// - By default the type is i32, as this is Rust's default number type
 #[proc_macro_error]
 #[proc_macro_derive(Distribution, attributes(weight))]
 pub fn derive_distribute(input: TokenStream) -> TokenStream {
