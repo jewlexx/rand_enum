@@ -1,3 +1,6 @@
+#![doc = include_str!("../README.md")]
+#![warn(missing_docs, clippy::all, clippy::pedantic)]
+
 #[macro_use]
 extern crate proc_macro_error;
 
@@ -6,6 +9,7 @@ use proc_macro2::Ident;
 use proc_macro_crate::FoundCrate;
 use syn::{spanned::Spanned, DeriveInput, LitInt};
 
+/// Implements [`rand::Distribution`] for a given enum
 #[proc_macro_error]
 #[proc_macro_derive(Distribution, attributes(weight))]
 pub fn derive_distribute(input: TokenStream) -> TokenStream {
