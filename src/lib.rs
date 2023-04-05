@@ -12,7 +12,6 @@ pub fn derive_distribute(input: TokenStream) -> TokenStream {
     let rand_crate = match proc_macro_crate::crate_name("rand") {
         Ok(found) => {
             let name = match found {
-                // TODO: Better message for itself
                 FoundCrate::Itself => "crate".to_string(),
                 FoundCrate::Name(name) => name,
             };
