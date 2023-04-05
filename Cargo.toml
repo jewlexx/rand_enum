@@ -2,6 +2,13 @@
 name = "rand_enum"
 version = "0.1.0"
 edition = "2018"
+descrption = "Implement rand Distribution for an enum"
+documentation = "https://docs.rs/rand_enum"
+repository = "https://github.com/jewlexx/rand_enum/"
+license = "MIT OR Apache-2.0"
+keywords = ["rand", "enum", "distribution"]
+readme = "README.md"
+rust-version = "1.60"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

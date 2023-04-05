@@ -45,10 +45,18 @@ pub fn derive_distribute(input: TokenStream) -> TokenStream {
                 let mut variant_weight = None;
                 for attr in &var.attrs {
                     match &attr.meta {
-                        syn::Meta::List(meta) => {
+                        syn::Meta::List(meta) =>
+                        {
+                            #[allow(clippy::manual_let_else)]
                             if meta.path.is_ident("weight") {
-                                let Ok(weight) = meta.parse_args::<LitInt>() else {
-                                    abort!(meta.tokens.span(), "could not parse weight. expected a integer literal");
+                                let weight = match meta.parse_args::<LitInt>() {
+                                    Ok(weight) => weight,
+                                    _ => {
+                                        abort!(
+                                            meta.tokens.span(),
+                                            "could not parse weight. expected a integer literal"
+                                        );
+                                    }
                                 };
 
                                 if let Ok(weight_value) = weight.base10_parse::<u128>() {
