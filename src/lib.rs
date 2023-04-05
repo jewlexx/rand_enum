@@ -9,9 +9,9 @@ use proc_macro2::Ident;
 use proc_macro_crate::FoundCrate;
 use syn::{spanned::Spanned, DeriveInput, LitInt};
 
-/// Implements [`rand::Distribution`](https://rust-random.github.io/rand/rand/distributions/distribution/trait.Distribution.html) for a given enum
+/// Implements [`rand::distributions::Distribution`](https://rust-random.github.io/rand/rand/distributions/distribution/trait.Distribution.html) for a given enum
 ///
-/// Information on weights is as follows. Note that this is not much, and much more information can be found at [rand's docs](https://rust-random.github.io/rand/rand/distributions/struct.WeightedIndex.html)
+/// Information on weights is as follows. Note that this is not much, and much more information can be found at [`rand::distributions::WeightedIndex`](https://rust-random.github.io/rand/rand/distributions/struct.WeightedIndex.html)
 /// - According to rand, a weight cannot be negative
 /// - 0: A weight of `0` means it will never be selected
 /// - 1: A weight of `1` is the default weight, and is thus redundant
