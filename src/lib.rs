@@ -83,6 +83,13 @@ pub fn derive_distribute(input: TokenStream) -> TokenStream {
 
     let (variant, weight): (Vec<Ident>, Vec<LitInt>) = variants.into_iter().unzip();
 
+    if weight.iter().all(|weight| {
+        let parsed: u128 = weight.base10_parse().unwrap();
+        parsed == 0
+    }) {
+        abort_call_site!("all weights are zero");
+    }
+
     // todo!()
 
     quote! {
